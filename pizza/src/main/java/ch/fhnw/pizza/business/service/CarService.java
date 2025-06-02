@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 
 import ch.fhnw.pizza.data.domain.Booking;
 import ch.fhnw.pizza.data.domain.Car;
-import ch.fhnw.pizza.data.repository.PizzaRepository;
+import ch.fhnw.pizza.data.repository.CarRepository;
 
 @Service
-public class MenuService {
+public class CarService {
 
     @Autowired
-    private PizzaRepository pizzaRepository;
+    private CarRepository pizzaRepository;
 
     public Car findPizzaById(Long carId) {
         try {

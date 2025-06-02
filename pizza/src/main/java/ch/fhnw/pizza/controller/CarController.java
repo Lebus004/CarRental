@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import ch.fhnw.pizza.business.service.MenuService;
+import ch.fhnw.pizza.business.service.CarService;
 import ch.fhnw.pizza.data.domain.Booking;
 import ch.fhnw.pizza.data.domain.Car;
 
 @RestController
 @RequestMapping(path="/menu")
-public class MenuController {
+public class CarController {
 
     @Autowired
-    private MenuService menuService;
+    private CarService menuService;
 
     @GetMapping(path="/pizzas/{id}", produces = "application/json")
     public ResponseEntity getPizza(@PathVariable Long id) {

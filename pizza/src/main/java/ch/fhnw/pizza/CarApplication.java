@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RestController;
 
-import ch.fhnw.pizza.business.service.MenuService;
+import ch.fhnw.pizza.business.service.CarService;
 import ch.fhnw.pizza.data.domain.Car;
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.annotation.PostConstruct;
@@ -13,13 +13,13 @@ import jakarta.annotation.PostConstruct;
 @SpringBootApplication
 @RestController
 @Hidden // Hide this controller from the Swagger UI
-public class PizzaApplication {
+public class CarApplication {
 
 	@Autowired
-	private MenuService menuService;
+	private CarService menuService;
 
 	public static void main(String[] args) {
-		SpringApplication.run(PizzaApplication.class, args);
+		SpringApplication.run(CarApplication.class, args);
 	}
 	
 

@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ch.fhnw.pizza.data.domain.Menu;
-import ch.fhnw.pizza.data.domain.Pizza;
+import ch.fhnw.pizza.data.domain.Booking;
+import ch.fhnw.pizza.data.domain.Car;
 import ch.fhnw.pizza.data.repository.PizzaRepository;
 
 @Service
@@ -15,21 +15,21 @@ public class MenuService {
     @Autowired
     private PizzaRepository pizzaRepository;
 
-    public Pizza findPizzaById(Long carId) {
+    public Car findPizzaById(Long carId) {
         try {
-            Pizza pizza = pizzaRepository.findById(carId).get();
+            Car pizza = pizzaRepository.findById(carId).get();
             return pizza;
         } catch (Exception e) {
             throw new RuntimeException("Pizza with id " + carId + " not found");
         }
     }
 
-    public List<Pizza> getAllPizzas() {
-        List<Pizza> pizzaList = pizzaRepository.findAll();
+    public List<Car> getAllPizzas() {
+        List<Car> pizzaList = pizzaRepository.findAll();
         return pizzaList;
     }
 
-    public Pizza addPizza(Pizza pizza) throws Exception {
+    public Car addPizza(Car pizza) throws Exception {
         if(pizza.getCarType() != null) {
             if (pizzaRepository.findByCarType(pizza.getCarType()) == null)
                 return pizzaRepository.save(pizza);
@@ -38,8 +38,8 @@ public class MenuService {
         throw new Exception("Invalid pizza name ");
     }
 
-    public Pizza updatePizza(Long carId, Pizza pizza) throws Exception {
-        Pizza pizzaToUpdate = pizzaRepository.findById(carId).get();
+    public Car updatePizza(Long carId, Car pizza) throws Exception {
+        Car pizzaToUpdate = pizzaRepository.findById(carId).get();
         if(pizzaToUpdate != null) {
             if(pizza.getCarType() != null)
                 pizzaToUpdate.setCarType(pizza.getCarType());
@@ -67,10 +67,10 @@ public class MenuService {
         return currentOffer;
     }
 
-    public Menu getMenuByLocation(String location) {
+    public Booking getMenuByLocation(String location) {
         String currentOffer = getCurrentOffer(location);
-        List<Pizza> pizzaList = getAllPizzas();
-        Menu menu = new Menu();
+        List<Car> pizzaList = getAllPizzas();
+        Booking menu = new Booking();
         menu.setPizzaList(pizzaList);
         menu.setCurrentOffer(currentOffer);
         return menu;

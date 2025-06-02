@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.fhnw.pizza.business.service.MenuService;
-import ch.fhnw.pizza.data.domain.Pizza;
+import ch.fhnw.pizza.data.domain.Car;
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.annotation.PostConstruct;
 
@@ -28,12 +28,12 @@ public class PizzaApplication {
 	// To resolve the error, delete the file and restart the application
 	@PostConstruct
 	private void initPlaceholderData() throws Exception {
-		Pizza pizza = new Pizza();
+		Car pizza = new Car();
 		pizza.setCarType("PW");
 		pizza.setCarModel("VW Golf");
 		menuService.addPizza(pizza);
 
-		pizza = new Pizza();
+		pizza = new Car();
 		pizza.setCarType("SUV");
 		pizza.setCarModel("BMW X5");
 		menuService.addPizza(pizza);

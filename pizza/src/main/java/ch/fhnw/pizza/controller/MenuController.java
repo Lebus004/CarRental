@@ -1,16 +1,23 @@
 package ch.fhnw.pizza.controller;
 
-import ch.fhnw.pizza.business.service.MenuService;
-import ch.fhnw.pizza.data.domain.Menu;
-import ch.fhnw.pizza.data.domain.Pizza;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import ch.fhnw.pizza.business.service.MenuService;
+import ch.fhnw.pizza.data.domain.Booking;
+import ch.fhnw.pizza.data.domain.Car;
 
 @RestController
 @RequestMapping(path="/menu")
@@ -22,7 +29,7 @@ public class MenuController {
     @GetMapping(path="/pizzas/{id}", produces = "application/json")
     public ResponseEntity getPizza(@PathVariable Long id) {
         try{
-            Pizza pizza = menuService.findPizzaById(id);
+            Car pizza = menuService.findPizzaById(id);
             return ResponseEntity.ok(pizza);
         }
         catch (Exception e) {
@@ -31,14 +38,14 @@ public class MenuController {
     }
 
     @GetMapping(path="/pizzas", produces = "application/json")
-    public List<Pizza> getPizzaList() {
-        List<Pizza> pizzaList = menuService.getAllPizzas();
+    public List<Car> getPizzaList() {
+        List<Car> pizzaList = menuService.getAllPizzas();
 
         return pizzaList;
     }
 
     @PostMapping(path="/pizzas", consumes="application/json", produces = "application/json")
-    public ResponseEntity addPizza(@RequestBody Pizza pizza) {
+    public ResponseEntity addPizza(@RequestBody Car pizza) {
         try{
             pizza = menuService.addPizza(pizza);
             
@@ -50,7 +57,7 @@ public class MenuController {
     }
 
     @PutMapping(path="/pizzas/{id}", consumes="application/json", produces = "application/json")
-    public ResponseEntity updatePizza(@PathVariable Long id, @RequestBody Pizza pizza) {
+    public ResponseEntity updatePizza(@PathVariable Long id, @RequestBody Car pizza) {
         try{
             pizza = menuService.updatePizza(id, pizza);
             
@@ -73,8 +80,8 @@ public class MenuController {
     }
 
     @GetMapping(path="", produces = "application/json")
-    public ResponseEntity<Menu> getMenu(@RequestParam String location) {
-        Menu menu = menuService.getMenuByLocation(location);
+    public ResponseEntity<Booking> getMenu(@RequestParam String location) {
+        Booking menu = menuService.getMenuByLocation(location);
         return ResponseEntity.ok(menu);      
     }
     

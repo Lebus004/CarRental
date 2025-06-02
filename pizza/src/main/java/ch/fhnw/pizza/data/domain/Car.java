@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "pizza")
-public class Pizza {
+public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,8 +25,17 @@ public class Pizza {
     @Column(name = "car_type")
     private String carType;
 
+    @Column(name = "car_availability")
+    private Boolean carAvailability;
+
+    @Column(name = "type_of_fuel")
+    private String typeOfFuel;
+
+    @Column(name = "seats")
+    private Integer seats;
+
     @ManyToOne
-    private Menu menu;
+    private Booking menu;
 
     public Long getCarId() {
         return carId;
@@ -50,6 +59,30 @@ public class Pizza {
 
     public void setCarType(String carType) {
         this.carType = carType;
+    }
+
+    public Boolean getCarAvailability() {
+        return carAvailability;
+    }
+    
+    public void setCarAvailability(Boolean carAvailability) {
+        this.carAvailability = carAvailability;
+    }
+
+    public String getTypeOfFuel() {
+        return typeOfFuel;
+    }
+
+    public void setTypeOfFuel(String typeOfFuel) {
+        this.typeOfFuel = typeOfFuel;
+    }
+
+    public Integer getSeats() {
+        return seats;
+    }
+
+    public void setSeats(Integer seats) {
+        this.seats = seats;
     }
 
 }

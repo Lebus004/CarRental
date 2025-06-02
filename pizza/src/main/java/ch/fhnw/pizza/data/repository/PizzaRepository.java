@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import ch.fhnw.pizza.data.domain.Pizza;
+import ch.fhnw.pizza.data.domain.Car;
 
 @Repository
 //JpaRepository should be typed to the domain class and an ID type
-public interface PizzaRepository extends JpaRepository<Pizza, Long> {
-    Pizza findByCarType(String carType);
-    List<Pizza> findAllByCarModelContainsIgnoreCase(String model);
+public interface PizzaRepository extends JpaRepository<Car, Long> {
+    Car findByCarType(String carType);
+    List<Car> findAllByCarModelContainsIgnoreCase(String model);
 }

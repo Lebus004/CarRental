@@ -13,19 +13,19 @@ public class Menu {
 
     @Id
     @JsonIgnore
-    private Long id;
+    private Long bookingId;
 
     @OneToMany(mappedBy = "menu")
     private List<Pizza> pizzaList;
 
     private String currentOffer;
 
-    public Long getId() {
-        return id;
+    public Long getBookingId() {
+        return bookingId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setBookingId(Long bookingId) {
+        this.bookingId = bookingId;
     }
 
     public List<Pizza> getPizzaList() {

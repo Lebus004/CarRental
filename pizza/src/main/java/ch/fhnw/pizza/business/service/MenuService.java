@@ -15,12 +15,12 @@ public class MenuService {
     @Autowired
     private PizzaRepository pizzaRepository;
 
-    public Pizza findPizzaById(Long id) {
+    public Pizza findPizzaById(Long carId) {
         try {
-            Pizza pizza = pizzaRepository.findById(id).get();
+            Pizza pizza = pizzaRepository.findById(carId).get();
             return pizza;
         } catch (Exception e) {
-            throw new RuntimeException("Pizza with id " + id + " not found");
+            throw new RuntimeException("Pizza with id " + carId + " not found");
         }
     }
 
@@ -30,31 +30,31 @@ public class MenuService {
     }
 
     public Pizza addPizza(Pizza pizza) throws Exception {
-        if(pizza.getPizzaName() != null) {
-            if (pizzaRepository.findByPizzaName(pizza.getPizzaName()) == null)
+        if(pizza.getCarType() != null) {
+            if (pizzaRepository.findByCarType(pizza.getCarType()) == null)
                 return pizzaRepository.save(pizza);
-            throw new Exception("Pizza " + pizza.getPizzaName() + " already exists");
+            throw new Exception("Pizza " + pizza.getCarType() + " already exists");
         }
         throw new Exception("Invalid pizza name ");
     }
 
-    public Pizza updatePizza(Long id, Pizza pizza) throws Exception {
-        Pizza pizzaToUpdate = pizzaRepository.findById(id).get();
+    public Pizza updatePizza(Long carId, Pizza pizza) throws Exception {
+        Pizza pizzaToUpdate = pizzaRepository.findById(carId).get();
         if(pizzaToUpdate != null) {
-            if(pizza.getPizzaName() != null)
-                pizzaToUpdate.setPizzaName(pizza.getPizzaName());
-            if(pizza.getPizzaToppings() != null)
-                pizzaToUpdate.setPizzaToppings(pizza.getPizzaToppings());
+            if(pizza.getCarType() != null)
+                pizzaToUpdate.setCarType(pizza.getCarType());
+            if(pizza.getCarModel() != null)
+                pizzaToUpdate.setCarModel(pizza.getCarModel());
             return pizzaRepository.save(pizzaToUpdate);
         }
-        throw new Exception("Pizza with id " + id + " does not exist");
+        throw new Exception("Pizza with id " + carId + " does not exist");
     }
 
-    public void deletePizza(Long id) throws Exception {
-        if(pizzaRepository.existsById(id)) {
-            pizzaRepository.deleteById(id);
+    public void deletePizza(Long carId) throws Exception {
+        if(pizzaRepository.existsById(carId)) {
+            pizzaRepository.deleteById(carId);
         } else
-            throw new Exception("Pizza with id " + id + " does not exist");
+            throw new Exception("Pizza with id " + carId + " does not exist");
     }
 
     //Business Logic to get current offer according to the location of the user requesting the menu

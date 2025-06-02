@@ -16,40 +16,40 @@ public class Pizza {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Hidden //This annotation hides the id field from the swagger documentation
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @Column(name = "car_id", nullable = false)
+    private Long carId;
 
-    @Column(name = "pizza_toppings")
-    private String pizzaToppings;
+    @Column(name = "car_model")
+    private String carModel;
 
-    @Column(name = "pizza_name")
-    private String pizzaName;
+    @Column(name = "car_type")
+    private String carType;
 
     @ManyToOne
     private Menu menu;
 
-    public Long getId() {
-        return id;
+    public Long getCarId() {
+        return carId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCarId(Long carId) {
+        this.carId = carId;
     }
 
-    public String getPizzaToppings() {
-        return pizzaToppings;
+    public String getCarModel() {
+        return carModel;
     }
 
-    public void setPizzaToppings(String pizzaToppings) {
-        this.pizzaToppings = pizzaToppings;
+    public void setCarModel(String carModel) {
+        this.carModel = carModel;
     }
 
-    public String getPizzaName() {
-        return pizzaName;
+    public String getCarType() {
+        return carType;
     }
 
-    public void setPizzaName(String pizzaName) {
-        this.pizzaName = pizzaName;
-    } 
-    
+    public void setCarType(String carType) {
+        this.carType = carType;
+    }
+
 }

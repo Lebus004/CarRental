@@ -3,7 +3,6 @@ package ch.fhnw.pizza;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.fhnw.pizza.business.service.MenuService;
@@ -30,15 +29,15 @@ public class PizzaApplication {
 	@PostConstruct
 	private void initPlaceholderData() throws Exception {
 		Pizza pizza = new Pizza();
-		pizza.setPizzaName("Margherita");
-		pizza.setPizzaToppings("Tomato sauce, mozzarella, basil");
+		pizza.setCarType("PW");
+		pizza.setCarModel("VW Golf");
 		menuService.addPizza(pizza);
 
 		pizza = new Pizza();
-		pizza.setPizzaName("Funghi");
-		pizza.setPizzaToppings("Tomato sauce, mozzarella, mushrooms");
+		pizza.setCarType("SUV");
+		pizza.setCarModel("BMW X5");
 		menuService.addPizza(pizza);
-		
+
 	}
 
 }

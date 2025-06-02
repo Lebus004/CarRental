@@ -10,6 +10,6 @@ import ch.fhnw.pizza.data.domain.Pizza;
 @Repository
 //JpaRepository should be typed to the domain class and an ID type
 public interface PizzaRepository extends JpaRepository<Pizza, Long> {
-    Pizza findByPizzaName(String pizzaName);
-    List<Pizza> findAllByPizzaToppingsContainsIgnoreCase(String topping);
+    Pizza findByCarType(String carType);
+    List<Pizza> findAllByCarModelContainsIgnoreCase(String model);
 }

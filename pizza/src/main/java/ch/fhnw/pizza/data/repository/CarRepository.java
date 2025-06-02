@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import ch.fhnw.pizza.data.domain.Car;
 
 @Repository
-//JpaRepository should be typed to the domain class and an ID type
 public interface CarRepository extends JpaRepository<Car, Long> {
-    Car findByCarType(String carType);
-    List<Car> findAllByCarModelContainsIgnoreCase(String model);
+    Car findByCarModel(String carModel);
+    List<Car> findAllByCarTypeContainsIgnoreCase(String carType);
+    List<Car> findAllByCarModelContainsIgnoreCase(String carModel);
 }

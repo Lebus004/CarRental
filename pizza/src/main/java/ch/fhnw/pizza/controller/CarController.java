@@ -12,77 +12,81 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import ch.fhnw.pizza.business.service.CarService;
-import ch.fhnw.pizza.data.domain.Booking;
 import ch.fhnw.pizza.data.domain.Car;
 
 @RestController
-@RequestMapping(path="/menu")
+@RequestMapping(path="/api")
 public class CarController {
 
-    @Autowired
-    private CarService menuService;
+@Autowired
+private CarService carService;
 
-    @GetMapping(path="/pizzas/{id}", produces = "application/json")
-    public ResponseEntity getPizza(@PathVariable Long id) {
-        try{
-            Car pizza = menuService.findPizzaById(id);
-            return ResponseEntity.ok(pizza);
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No pizza found with given id");
-        }
+@GetMapping(path="/car/{id}", produces = "application/json")
+public ResponseEntity<Car> getCar(@PathVariable Long id) {
+    try{
+        Car car = carService.findCarById(id);
+        return ResponseEntity.ok(car);
     }
-
-    @GetMapping(path="/pizzas", produces = "application/json")
-    public List<Car> getPizzaList() {
-        List<Car> pizzaList = menuService.getAllPizzas();
-
-        return pizzaList;
+    catch (Exception e) {
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
     }
+}
 
-    @PostMapping(path="/pizzas", consumes="application/json", produces = "application/json")
-    public ResponseEntity addPizza(@RequestBody Car pizza) {
-        try{
-            pizza = menuService.addPizza(pizza);
-            
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Pizza already exists with given name");
-        }
-        return ResponseEntity.ok(pizza);
-        
+@GetMapping(path="/carlist", produces = "application/json")
+public List<Car> getCarList() {
+    List<Car> carList = carService.getAllCars();
+    if(carList.isEmpty())
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No cars found");
+    return carList;
+}
+@PostMapping(path="/car", consumes="application/json", produces = "application/json")
+public ResponseEntity<Car> addCar(@RequestBody Car car) {
+    try{
+        car = carService.addCar(car);
+    } catch (Exception e) {
+        throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
     }
-
-    @PutMapping(path="/pizzas/{id}", consumes="application/json", produces = "application/json")
-    public ResponseEntity updatePizza(@PathVariable Long id, @RequestBody Car pizza) {
-        try{
-            pizza = menuService.updatePizza(id, pizza);
-            
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("No pizza found with given id");
-
-        }
-        return ResponseEntity.ok(pizza);
-        
-    }
-
-    @DeleteMapping(path="/pizzas/{id}")
-    public ResponseEntity<String> deletePizza(@PathVariable Long id) {
-        try{
-            menuService.deletePizza(id);
-            return ResponseEntity.ok("Pizza with id " + id + " deleted");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pizza not found");
-        }
-    }
-
-    @GetMapping(path="", produces = "application/json")
-    public ResponseEntity<Booking> getMenu(@RequestParam String location) {
-        Booking menu = menuService.getMenuByLocation(location);
-        return ResponseEntity.ok(menu);      
-    }
+    return ResponseEntity.ok(car);
     
+}
+
+@DeleteMapping(path="/car/{id}")
+public ResponseEntity<Void> deleteCar(@PathVariable Long id) {
+    try {
+        carService.deleteCar(id);
+    } catch (Exception e) {
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+    }
+    return ResponseEntity.noContent().build();
+}
+
+// update car
+@PutMapping(path="/car/{id}", consumes="application/json", produces = "application/json")
+public ResponseEntity<Car> updateCar(@PathVariable Long id, @RequestBody Car car) {
+    try {
+        // Hole das bestehende Auto aus der Datenbank
+        Car existingCar = carService.findCarById(id);
+        if (existingCar == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Car not found");
+        }
+
+        // Aktualisiere die Felder des bestehenden Autos mit den neuen Werten
+        existingCar.setCarModel(car.getCarModel());
+        existingCar.setCarType(car.getCarType());
+        existingCar.setCarAvailability(car.getCarAvailability());
+        existingCar.setTypeOfFuel(car.getTypeOfFuel());
+        existingCar.setSeats(car.getSeats());
+
+        // Speichere das aktualisierte Auto
+        Car updatedCar = carService.updateCar(existingCar);
+        return ResponseEntity.ok(updatedCar);
+    } catch (Exception e) {
+        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+    }
+}
+
 }

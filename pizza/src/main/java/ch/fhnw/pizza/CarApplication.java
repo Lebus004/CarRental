@@ -16,7 +16,7 @@ import jakarta.annotation.PostConstruct;
 public class CarApplication {
 
 	@Autowired
-	private CarService menuService;
+	private CarService carService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CarApplication.class, args);
@@ -28,15 +28,21 @@ public class CarApplication {
 	// To resolve the error, delete the file and restart the application
 	@PostConstruct
 	private void initPlaceholderData() throws Exception {
-		Car pizza = new Car();
-		pizza.setCarType("PW");
-		pizza.setCarModel("VW Golf");
-		menuService.addPizza(pizza);
+		Car car = new Car();
+		car.setCarType("PW");
+		car.setCarModel("VW Golf");
+		car.setTypeOfFuel("Diesel");
+		car.setSeats(5);
+		car.setCarAvailability(true);
+		carService.addCar(car);
 
-		pizza = new Car();
-		pizza.setCarType("SUV");
-		pizza.setCarModel("BMW X5");
-		menuService.addPizza(pizza);
+		car = new Car();
+		car.setCarType("SUV");
+		car.setCarModel("BMW X5");
+		car.setTypeOfFuel("Electric");
+		car.setSeats(5);
+		car.setCarAvailability(true);
+		carService.addCar(car);
 
 	}
 

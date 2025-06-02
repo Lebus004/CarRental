@@ -6,42 +6,39 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "pizza")
+@Table(name = "car")
 public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Hidden //This annotation hides the id field from the swagger documentation
     @Column(name = "car_id", nullable = false)
-    private Long carId;
+    private long carId;
 
-    @Column(name = "car_model")
+    @Column(name = "car_model", nullable = false)
     private String carModel;
 
-    @Column(name = "car_type")
+    @Column(name = "car_type", nullable = false)
     private String carType;
 
-    @Column(name = "car_availability")
+    @Column(name = "car_availability", nullable = false)
     private Boolean carAvailability;
 
-    @Column(name = "type_of_fuel")
+    @Column(name = "type_of_fuel", nullable = false)
     private String typeOfFuel;
 
     @Column(name = "seats")
     private Integer seats;
 
-    @ManyToOne
-    private Booking menu;
-
-    public Long getCarId() {
+    // Getter und Setter
+    public long getCarId() {
         return carId;
     }
 
-    public void setCarId(Long carId) {
+    public void setCarId(long carId) {
         this.carId = carId;
     }
 
@@ -64,7 +61,7 @@ public class Car {
     public Boolean getCarAvailability() {
         return carAvailability;
     }
-    
+
     public void setCarAvailability(Boolean carAvailability) {
         this.carAvailability = carAvailability;
     }
@@ -84,5 +81,4 @@ public class Car {
     public void setSeats(Integer seats) {
         this.seats = seats;
     }
-
 }

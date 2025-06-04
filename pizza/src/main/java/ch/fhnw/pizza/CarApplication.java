@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ch.fhnw.pizza.business.service.CarService;
 import ch.fhnw.pizza.data.domain.Car;
+import ch.fhnw.pizza.data.domain.Customer;
+import ch.fhnw.pizza.data.domain.Admin;
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.annotation.PostConstruct;
 
@@ -44,6 +46,13 @@ public class CarApplication {
 		car.setCarAvailability(true);
 		carService.addCar(car);
 
+		Customer customer = new Customer();
+		customer.setUsername("mycustomer");
+		customer.setPassword("password");
+
+		Admin admin = new Admin();
+		admin.setUsername("myadmin");
+		admin.setPassword("password");
 	}
 
 }

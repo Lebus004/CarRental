@@ -17,7 +17,6 @@ import jakarta.persistence.Table;
 public class Booking {
 
     @Id
-    @JsonIgnore // Verhindert, dass bookingId in JSON-Ausgaben erscheint
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Integer bookingId;

@@ -27,7 +27,7 @@ public class CustomerController {
     private CustomerService customerService;
     
         // GET: Hole einen Kunden anhand der ID
-        @GetMapping(path = "/customer/{id}", produces = "application/json")
+        @GetMapping(path = "/customers/{id}", produces = "application/json")
         public ResponseEntity<Customer> getCustomerById(@PathVariable Long id) {
             try {
                 Customer customer = customerService.findCustomerById(id);
@@ -41,7 +41,7 @@ public class CustomerController {
         }
     
         // GET: Hole alle Kunden
-        @GetMapping(path = "/customerlist", produces = "application/json")
+        @GetMapping(path = "/customers", produces = "application/json")
         public ResponseEntity<List<Customer>> getAllCustomers() {
             try {
                 List<Customer> customers = customerService.getAllCustomers();
@@ -55,7 +55,7 @@ public class CustomerController {
         }
     
         // POST: Füge einen neuen Kunden hinzu
-        @PostMapping(path="/customer", consumes="application/json", produces = "application/json")
+        @PostMapping(path="/customers", consumes="application/json", produces = "application/json")
         public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
             try {
                 Customer savedCustomer = customerService.addCustomer(customer);
@@ -66,7 +66,7 @@ public class CustomerController {
         }
     
         // PUT: Aktualisiere einen bestehenden Kunden
-        @PutMapping(path = "/customer/{id}", consumes = "application/json", produces = "application/json")
+        @PutMapping(path = "/customers/{id}", consumes = "application/json", produces = "application/json")
         public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
             try {
                 customer.setCustomerId(id.intValue());
@@ -78,7 +78,7 @@ public class CustomerController {
         }
     
         // DELETE: Lösche einen Kunden anhand der ID
-        @DeleteMapping(path = "customer/{id}")
+        @DeleteMapping(path = "/customers/{id}")
         public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
             try {
                 Customer deletedCustomer = customerService.deleteCustomer(id);

@@ -25,7 +25,7 @@ public class CarController {
 @Autowired
 private CarService carService;
 
-@GetMapping(path="/car/{id}", produces = "application/json")
+@GetMapping(path="/cars/{id}", produces = "application/json")
 public ResponseEntity<Car> getCar(@PathVariable Long id) {
     try{
         Car car = carService.findCarById(id);
@@ -36,14 +36,14 @@ public ResponseEntity<Car> getCar(@PathVariable Long id) {
     }
 }
 
-@GetMapping(path="/carlist", produces = "application/json")
+@GetMapping(path="/cars", produces = "application/json")
 public List<Car> getCarList() {
     List<Car> carList = carService.getAllCars();
     if(carList.isEmpty())
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No cars found");
     return carList;
 }
-@PostMapping(path="/car", consumes="application/json", produces = "application/json")
+@PostMapping(path="/cars", consumes="application/json", produces = "application/json")
 public ResponseEntity<Car> addCar(@RequestBody Car car) {
     try{
         car = carService.addCar(car);
@@ -54,7 +54,7 @@ public ResponseEntity<Car> addCar(@RequestBody Car car) {
     
 }
 
-@DeleteMapping(path="/car/{id}")
+@DeleteMapping(path="/cars/{id}")
 public ResponseEntity<Void> deleteCar(@PathVariable Long id) {
     try {
         carService.deleteCar(id);
@@ -65,7 +65,7 @@ public ResponseEntity<Void> deleteCar(@PathVariable Long id) {
 }
 
 // update car
-@PutMapping(path="/car/{id}", consumes="application/json", produces = "application/json")
+@PutMapping(path="/cars/{id}", consumes="application/json", produces = "application/json")
 public ResponseEntity<Car> updateCar(@PathVariable Long id, @RequestBody Car car) {
     try {
         // Hole das bestehende Auto aus der Datenbank

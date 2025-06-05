@@ -26,7 +26,7 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
-    @GetMapping(path="/booking/{id}", produces = "application/json")
+    @GetMapping(path="/bookings/{id}", produces = "application/json")
     public ResponseEntity<Booking> getBooking(@PathVariable Long id) {
         try{
             Booking booking = bookingService.findBookingById(id);
@@ -37,7 +37,7 @@ public class BookingController {
         }
     }
 
-    @GetMapping(path="/bookinglist", produces = "application/json")
+    @GetMapping(path="/bookings", produces = "application/json")
     public List<Booking> getBookingList() {
         List<Booking> bookingList = bookingService.getAllBookings();
         if(bookingList.isEmpty())
@@ -46,7 +46,7 @@ public class BookingController {
     }
 
     // Booking costs are displayed weirdly rather than actual costs
-    @PostMapping(path="/booking", consumes="application/json", produces = "application/json")
+    @PostMapping(path="/bookings", consumes="application/json", produces = "application/json")
     public ResponseEntity<Booking> addBooking(@RequestBody Booking booking) {
         // Prüfe, ob das Auto im gewünschten Zeitraum verfügbar ist
         boolean available = bookingService.isCarAvailable(
@@ -65,7 +65,7 @@ public class BookingController {
         return ResponseEntity.ok(booking);
     }
 
-    @DeleteMapping(path="/booking/{id}", produces = "application/json")
+    @DeleteMapping(path="/bookings/{id}", produces = "application/json")
     public ResponseEntity<Booking> deleteBooking(@PathVariable Long id) {
         Booking booking = null;
         try{
@@ -77,7 +77,7 @@ public class BookingController {
     }
 
     // Creates new booking rather than updating the last one
-    @PutMapping(path="/booking/{id}", consumes="application/json", produces = "application/json")
+    @PutMapping(path="/bookings/{id}", consumes="application/json", produces = "application/json")
     public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestBody Booking booking) {
     try {
         // Hole die bestehende Buchung aus der Datenbank

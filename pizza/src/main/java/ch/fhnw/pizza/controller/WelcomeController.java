@@ -17,7 +17,7 @@ public class WelcomeController {
         return "Hello, welcome to our Car Rental!";
     }
 
-    @GetMapping(value="/user")
+    @GetMapping(value="/api/user")
     public String getUserRole(Authentication auth) {
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
         String role = userDetails.getAuthorities().toArray()[1].toString();

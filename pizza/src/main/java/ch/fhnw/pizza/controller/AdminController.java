@@ -27,7 +27,7 @@ public class AdminController {
     private AdminService adminService;
     
         // GET: Hole einen Admin anhand der ID
-        @GetMapping(path = "/admin/{id}", produces = "application/json")
+        @GetMapping(path = "/admins/{id}", produces = "application/json")
         public ResponseEntity<Admin> getAdminById(@PathVariable Long id) {
             try {
                 Admin admin = adminService.findAdminById(id);
@@ -41,7 +41,7 @@ public class AdminController {
         }
     
         // GET: Hole alle Admins
-        @GetMapping(path = "/adminlist", produces = "application/json")
+        @GetMapping(path = "/admins", produces = "application/json")
         public ResponseEntity<List<Admin>> getAllAdmins() {
             try {
                 List<Admin> admins = adminService.getAllAdmins();
@@ -55,7 +55,7 @@ public class AdminController {
         }
     
         // POST: Füge einen neuen Admin hinzu
-        @PostMapping(path="/admin", consumes="application/json", produces = "application/json")
+        @PostMapping(path="/admins", consumes="application/json", produces = "application/json")
         public ResponseEntity<Admin> addAdmin(@RequestBody Admin admin) {
             try {
                 Admin savedAdmin = adminService.addAdmin(admin);
@@ -67,7 +67,7 @@ public class AdminController {
     
 
         // PUT: Aktualisiere einen bestehenden Admin
-        @PutMapping(path = "/admin/{id}", consumes = "application/json", produces = "application/json")
+        @PutMapping(path = "/admins/{id}", consumes = "application/json", produces = "application/json")
 public ResponseEntity<Admin> updateAdmin(@PathVariable Long id, @RequestBody Admin admin) {
     try {
         Admin existingAdmin = adminService.findAdminById(id);
@@ -87,7 +87,7 @@ public ResponseEntity<Admin> updateAdmin(@PathVariable Long id, @RequestBody Adm
 }
     
         // DELETE: Lösche einen Admin anhand der ID
-        @DeleteMapping(path = "admin/{id}")
+        @DeleteMapping(path = "/admins/{id}")
         public ResponseEntity<Void> deleteAdmin(@PathVariable Long id) {
             try {
                 Admin deletedAdmin = adminService.deleteAdmin(id);

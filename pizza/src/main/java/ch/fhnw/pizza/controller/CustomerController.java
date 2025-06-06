@@ -79,13 +79,13 @@ public class CustomerController {
     
         // DELETE: Lösche einen Kunden anhand der ID
         @DeleteMapping(path = "/customers/{id}")
-        public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
+        public ResponseEntity<String> deleteCustomer(@PathVariable Long id) {
             try {
                 Customer deletedCustomer = customerService.deleteCustomer(id);
                 if (deletedCustomer == null) {
                     throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found");
                 }
-                return ResponseEntity.noContent().build();
+                return ResponseEntity.ok("Customer with id " + id + " deleted");
             } catch (Exception e) {
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
             }

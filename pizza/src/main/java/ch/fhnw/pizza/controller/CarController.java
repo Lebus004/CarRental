@@ -55,13 +55,13 @@ public ResponseEntity<Car> addCar(@RequestBody Car car) {
 }
 
 @DeleteMapping(path="/cars/{id}")
-public ResponseEntity<Void> deleteCar(@PathVariable Long id) {
+public ResponseEntity<String> deleteCar(@PathVariable Long id) {
     try {
         carService.deleteCar(id);
     } catch (Exception e) {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
     }
-    return ResponseEntity.noContent().build();
+    return ResponseEntity.ok("Car with id " + id + " deleted");
 }
 
 // update car

@@ -68,11 +68,11 @@ public class AdminController {
 
         // PUT: Aktualisiere einen bestehenden Admin
         @PutMapping(path = "/admins/{id}", consumes = "application/json", produces = "application/json")
-public ResponseEntity<Admin> updateAdmin(@PathVariable Long id, @RequestBody Admin admin) {
-    try {
-        Admin existingAdmin = adminService.findAdminById(id);
-        if (existingAdmin == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Admin not found");
+        public ResponseEntity<Admin> updateAdmin(@PathVariable Long id, @RequestBody Admin admin) {
+            try {
+                Admin existingAdmin = adminService.findAdminById(id);
+            if (existingAdmin == null) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Admin not found");
         }
 
         // Aktualisiere die Felder des bestehenden Admins
@@ -88,13 +88,13 @@ public ResponseEntity<Admin> updateAdmin(@PathVariable Long id, @RequestBody Adm
     
         // DELETE: Lösche einen Admin anhand der ID
         @DeleteMapping(path = "/admins/{id}")
-        public ResponseEntity<Void> deleteAdmin(@PathVariable Long id) {
+        public ResponseEntity<String> deleteAdmin(@PathVariable Long id) {
             try {
                 Admin deletedAdmin = adminService.deleteAdmin(id);
                 if (deletedAdmin == null) {
                     throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Admin not found");
                 }
-                return ResponseEntity.noContent().build();
+                return ResponseEntity.ok("Admin with id " + id + " deleted");
             } catch (Exception e) {
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
             }

@@ -43,7 +43,9 @@ public class SecurityConfig {
                         .requestMatchers("/api/customers").hasRole("ADMIN") //note that the role need not be prefixed with "ROLE_"
                         .requestMatchers("/api/cars").hasRole("ADMIN") //note that the role need not be prefixed with "ROLE_"
                         .requestMatchers("/api/admins").hasRole("ADMIN") //note that the role need not be prefixed with "ROLE_"
+                        
                         .requestMatchers("/api/**",
+                                                    "/users",
                                                     "/**", //allow access to the home page
                                                     "/swagger-ui.html", //allow access to the swagger UI
                                                     "/v3/api-docs/**",  //allow access to the swagger API documentation

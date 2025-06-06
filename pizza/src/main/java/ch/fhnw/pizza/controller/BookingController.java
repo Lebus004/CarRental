@@ -66,14 +66,14 @@ public class BookingController {
     }
 
     @DeleteMapping(path="/bookings/{id}", produces = "application/json")
-    public ResponseEntity<Booking> deleteBooking(@PathVariable Long id) {
+    public ResponseEntity<String> deleteBooking(@PathVariable Long id) {
         Booking booking = null;
         try{
             booking = bookingService.deleteBooking(id);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
-        return ResponseEntity.ok(booking);
+        return ResponseEntity.ok("Booking with id " + id + " deleted");
     }
 
     // Creates new booking rather than updating the last one

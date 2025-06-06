@@ -1,5 +1,6 @@
 package ch.fhnw.pizza.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +19,13 @@ public class WelcomeController {
     }
 
     @GetMapping(value="/api/user")
-    public String getUserRole(Authentication auth) {
+    public ResponseEntity<?> getUserRole(Authentication auth) {
+        if (auth == null || !auth.isAuthenticated() || auth.getPrincipal() == "anonymousUser") {
+            return ResponseEntity.status(401).body("Unauthorized: Username or password incorrect");
+        }
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
         String role = userDetails.getAuthorities().toArray()[1].toString();
-        return role;
+        return ResponseEntity.ok(role);
     }
 
 

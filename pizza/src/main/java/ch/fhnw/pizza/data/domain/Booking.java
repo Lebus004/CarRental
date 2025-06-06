@@ -1,15 +1,16 @@
 package ch.fhnw.pizza.data.domain;
 
 import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,6 +29,9 @@ public class Booking {
     @Column(name = "end_date", nullable = false)
     @JsonFormat(pattern = "HH:mm dd.MM.yyyy") // Format für JSON-Serialisierung/Deserialisierung
     private LocalDateTime endDate;
+
+    @Column(name = "duration", nullable = false)
+    private Integer duration; // in Stunden
 
     @Column(name = "booking_cost", nullable = false)
     private Double bookingCost;
@@ -87,5 +91,13 @@ public class Booking {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
     }
 }

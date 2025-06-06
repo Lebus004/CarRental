@@ -1,6 +1,5 @@
 package ch.fhnw.pizza.business.service;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -29,17 +28,16 @@ public class BookingService {
         if (booking.getCar() == null || booking.getCustomer() == null) {
             throw new Exception("Car and User cannot be null");
         }
-        // Berechne die Dauer in Stunden
-        long hours = Duration.between(booking.getStartDate(), booking.getEndDate()).toHours();
+        long hours = booking.getDuration();
         if (hours < 1 || hours > 12) {
             throw new Exception("Booking duration must be between 1 and 12 hours");
         }
-        // Preis bestimmen
         int price = HOURLY_PRICES.getOrDefault((int) hours, -1);
         if (price == -1) {
             throw new Exception("No price defined for this duration");
         }
         booking.setBookingCost((double) price);
+        // endDate wird im Controller gesetzt!
         return bookingRepository.save(booking);
     }
 
@@ -83,6 +81,6 @@ public class BookingService {
         Map.entry(9, 840),
         Map.entry(10, 930),
         Map.entry(11, 1020),
-        Map.entry(12, 1110)
+        Map.entry(12, 1050)
     );
 }

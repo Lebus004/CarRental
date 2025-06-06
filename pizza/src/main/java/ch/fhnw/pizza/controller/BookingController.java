@@ -1,5 +1,6 @@
 package ch.fhnw.pizza.controller;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.time.Duration;
 
 import ch.fhnw.pizza.business.service.BookingService;
 import ch.fhnw.pizza.data.domain.Booking;
@@ -50,7 +49,15 @@ public class BookingController {
     // Booking costs are displayed weirdly rather than actual costs
     @PostMapping(path="/bookings", consumes="application/json", produces = "application/json")
     public ResponseEntity<Booking> addBooking(@RequestBody Booking booking) {
-        // Prüfe, ob das Auto im gewünschten Zeitraum verfügbar ist
+        // Prüfe, ob das Startdatum in der Vergangenheit liegt
+        if (booking.getStartDate() == null || booking.getDuration() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "startDate and duration are required");
+        }
+        if (booking.getStartDate().isBefore(java.time.LocalDateTime.now())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No bookings in the past allowed");
+        }
+        booking.setEndDate(booking.getStartDate().plusHours(booking.getDuration()));
+
         boolean available = bookingService.isCarAvailable(
             booking.getCar().getCarId(),
             booking.getStartDate(),
@@ -88,12 +95,13 @@ public class BookingController {
         }
 
         existingBooking.setStartDate(booking.getStartDate());
-        existingBooking.setEndDate(booking.getEndDate());
+        existingBooking.setDuration(booking.getDuration());
+        existingBooking.setEndDate(booking.getStartDate().plusHours(booking.getDuration()));
         existingBooking.setCar(booking.getCar());
         existingBooking.setCustomer(booking.getCustomer());
 
         // Kosten neu berechnen
-        long hours = Duration.between(existingBooking.getStartDate(), existingBooking.getEndDate()).toHours();
+        long hours = existingBooking.getDuration();
         int price = BookingService.HOURLY_PRICES.getOrDefault((int) hours, -1);
         if (price == -1) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "No price defined for this duration");

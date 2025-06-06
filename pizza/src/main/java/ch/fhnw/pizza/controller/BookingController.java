@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.Duration;
+
 import ch.fhnw.pizza.business.service.BookingService;
 import ch.fhnw.pizza.data.domain.Booking;
 
@@ -80,20 +82,24 @@ public class BookingController {
     @PutMapping(path="/bookings/{id}", consumes="application/json", produces = "application/json")
     public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestBody Booking booking) {
     try {
-        // Hole die bestehende Buchung aus der Datenbank
         Booking existingBooking = bookingService.findBookingById(id);
         if (existingBooking == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking not found");
         }
 
-        // Aktualisiere die Felder der bestehenden Buchung mit den neuen Werten
         existingBooking.setStartDate(booking.getStartDate());
         existingBooking.setEndDate(booking.getEndDate());
-        existingBooking.setBookingCost(booking.getBookingCost());
         existingBooking.setCar(booking.getCar());
         existingBooking.setCustomer(booking.getCustomer());
 
-        // Speichere die aktualisierte Buchung
+        // Kosten neu berechnen
+        long hours = Duration.between(existingBooking.getStartDate(), existingBooking.getEndDate()).toHours();
+        int price = BookingService.HOURLY_PRICES.getOrDefault((int) hours, -1);
+        if (price == -1) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "No price defined for this duration");
+        }
+        existingBooking.setBookingCost((double) price);
+
         Booking updatedBooking = bookingService.updateBooking(existingBooking);
         return ResponseEntity.ok(updatedBooking);
     } catch (Exception e) {

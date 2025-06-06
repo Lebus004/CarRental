@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import ch.fhnw.pizza.data.domain.Car;
 import ch.fhnw.pizza.data.repository.CarRepository;
 
@@ -46,5 +47,16 @@ public class CarService {
 
     public Car updateCar(Car car) {
         return carRepository.save(car);
+    }
+
+    public List<Car> filterCars(String carModel, String carType, Boolean carAvailability, String typeOfFuel, Integer seats) {
+        List<Car> cars = carRepository.findAll();
+        return cars.stream()
+            .filter(car -> carModel == null || car.getCarModel().equalsIgnoreCase(carModel))
+            .filter(car -> carType == null || car.getCarType().equalsIgnoreCase(carType))
+            .filter(car -> carAvailability == null || car.getCarAvailability().equals(carAvailability))
+            .filter(car -> typeOfFuel == null || car.getTypeOfFuel().equalsIgnoreCase(typeOfFuel))
+            .filter(car -> seats == null || car.getSeats().equals(seats))
+            .toList();
     }
 }

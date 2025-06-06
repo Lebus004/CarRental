@@ -31,7 +31,6 @@ public class SecurityConfig {
                 .password("{bcrypt}$2a$10$9fxQtdWuRaYn5UchAm5iAexbPi7tmRadnDogJwXPR9fVDJyt9g/su")
                 .authorities("READ","ROLE_ADMIN")
                 .build());
-
     }
 
     @Bean

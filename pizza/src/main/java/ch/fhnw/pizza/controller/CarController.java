@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -37,11 +38,14 @@ public ResponseEntity<Car> getCar(@PathVariable Long id) {
 }
 
 @GetMapping(path="/cars", produces = "application/json")
-public List<Car> getCarList() {
-    List<Car> carList = carService.getAllCars();
-    if(carList.isEmpty())
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No cars found");
-    return carList;
+public List<Car> getCarList(
+        @RequestParam(required = false) String carModel,
+        @RequestParam(required = false) String carType,
+        @RequestParam(required = false) Boolean carAvailability,
+        @RequestParam(required = false) String typeOfFuel,
+        @RequestParam(required = false) Integer seats
+) {
+    return carService.filterCars(carModel, carType, carAvailability, typeOfFuel, seats);
 }
 @PostMapping(path="/cars", consumes="application/json", produces = "application/json")
 public ResponseEntity<Car> addCar(@RequestBody Car car) {

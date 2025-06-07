@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.fhnw.pizza.business.service.AdminService;
+import ch.fhnw.pizza.business.service.CustomerService;
 import ch.fhnw.pizza.business.service.CarService;
 import ch.fhnw.pizza.data.domain.Car;
 import ch.fhnw.pizza.data.domain.Customer;
@@ -19,6 +21,13 @@ public class CarApplication {
 
 	@Autowired
 	private CarService carService;
+
+	@Autowired
+	private CustomerService customerService;
+
+	@Autowired
+	private AdminService adminService;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(CarApplication.class, args);
@@ -48,11 +57,13 @@ public class CarApplication {
 
 		Customer customer = new Customer();
 		customer.setUsername("mycustomer");
-		customer.setPassword("password");
+		customer.setPassword("$2a$10$9fxQtdWuRaYn5UchAm5iAexbPi7tmRadnDogJwXPR9fVDJyt9g/su");
+		customerService.addCustomer(customer);
 
 		Admin admin = new Admin();
 		admin.setUsername("myadmin");
-		admin.setPassword("password");
+		admin.setPassword("$2a$10$9fxQtdWuRaYn5UchAm5iAexbPi7tmRadnDogJwXPR9fVDJyt9g/su");
+		adminService.addAdmin(admin);
 	}
 
 }

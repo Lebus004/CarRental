@@ -184,7 +184,6 @@ Delete Booking
 - Business Logic & API Design
 - Backend and Data Layer Implementation
 - Frontend and Security Integration
-- (Optional) Deployment
 
 ---
 

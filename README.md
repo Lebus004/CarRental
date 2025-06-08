@@ -1,7 +1,7 @@
 # CarRental_FHNW
 
-CarRental_FHNW is a minimal Reference Project for car rental management, serving as a template for students in Internet Technologies.  
-**🚧: This is a template project. Adapt the documentation and code according to your use case. Remove all comments marked with "🚧:" before final submission.**
+CarRental_FHNW is a project for car rental management.
+
 
 ---
 
@@ -30,29 +30,37 @@ CarRental_FHNW is a minimal Reference Project for car rental management, serving
 
 ### Scenario
 
-CarRental_FHNW is a lightweight demonstration system enabling technical services and staff to manage a catalog of rental cars, bookings, and maintenance. It provides both administrative and user-facing functionality.
+CarRental_FHNW is a lightweight demonstration system enabling customer and admin to manage a catalog of rental cars, bookings. It provides both administrative and user-facing functionality.
 
 ### User Stories
 
-- As a Technical Service Admin, I want a web app accessible on both mobile devices and desktop computers.
 - As an Admin, I want a consistent visual appearance for easy navigation.
-- As an Admin, I want to list, edit, and create cars, bookings, and maintenance intervals.
-- As an Admin, I want to log in for authentication.
-- As an Employee/Department Head, I want to book and manage car reservations.
-- As a User, I want to view available cars and filter by type or availability.
-- (Optional) As a User, I want to authenticate to access personal data.
+- As an Admin, I want to create, edit, delete, car, bookings and access.
+- As an Admin, I want to login as a admin for authentication and authorization.
+- As an User, I want to create and update or delete my bookings.
+- As a User, I want to view available cars and filter by model, type, fuel type.
+- As a User, I want to authenticate to access personal data.
+- As a User, I want to see the cost of my booking.
+
 
 ### Use Cases
 
-- **UC-1 [Show all Cars]:** Admin can retrieve all cars in the system.
-- **UC-2 [Show Car Details]:** Admin or user can retrieve details of a specific car.
-- **UC-3 [Manage Cars]:** Admin can create, update, and delete cars.
-- **UC-4 [Manage Bookings]:** Employees/Department Heads can create, update, and cancel bookings.
-- **UC-5 [Submit Damage]:** Employees/Department Heads can submit reports of car damage.
-- **UC-6 [Manage Maintenance]:** Admin can create or edit maintenance intervals.
-- **UC-7 [Filter Cars]:** Users can filter available cars by type, status, etc.
+- **UC-1 [Show filtered car list]:**  
+  The user can retrieve a list of all available cars in the system, with options to filter by model, type, or fuel type.
+- **UC-2 [Show Car Details]:**  
+  The user can view detailed information about a specific car, including its model, type, fuel type, seats, and availability.
+- **UC-3 [Manage Cars]:**  
+  The Admin can create, update, or delete car entries in the catalog.
+- **UC-4 [User Authentication]:**  
+  The User or Admin can log in to access personalized or administrative features based on their role.
+- **UC-5 [Manage Bookings (User)]:**  
+  The user can create, update, or delete their own car bookings.
+- **UC-6 [Manage Bookings (Admin)]:**  
+  The Admin can view, create, update, or delete any bookings for the user in the system.
+- **UC-7 [View Booking Cost]:**  
+  The user can view the calculated cost of a booking based on the rental duration.
 
----
+
 
 ## Design
 
@@ -60,17 +68,17 @@ CarRental_FHNW is a lightweight demonstration system enabling technical services
 
 ### Wireframe
 
-**🚧: Start with a sitemap and wireframe (draw.io or similar). List the main pages: Home, Car List, Booking, Maintenance, Admin.**
+**🚧: List the main pages: Main Screen, Car choices screen, Login, Admin.**
 
 ### Prototype
 
-**🚧: Optionally, create a prototype using placeholder data.**
+**🚧: create a prototype using placeholder data.**
 
 ### Domain Design
 
-**🚧: Provide an entity-relationship or UML class diagram.**
+**🚧: Provide an entity-relationship diagram.**
 
-Main domain entities may include: Car, Booking, Maintenance, User, VehicleType.
+Main domain entities may include: Car, Booking, User, VehicleType.
 
 ### Business Logic
 
@@ -80,7 +88,7 @@ For booking a car (UC-4):
 
 - **Path:** `/api/bookings`
 - **Method:** `POST`, `GET`, `PUT`, `DELETE`
-- **Logic:** Employees can create, modify, or cancel bookings for available cars. The system checks for overlapping bookings and car availability.
+- **Logic:** Users can create, modify, or cancel bookings for available cars. The system checks for overlapping bookings and car availability.
 
 API documentation available at `/swagger-ui.html`.
 
@@ -113,7 +121,36 @@ API documentation available at `/swagger-ui.html`.
 
 ### Frontend Technology
 
-**🚧: List the frontend framework or app builder used (e.g., Budibase, React, Angular). Describe main views and APIs used for each view.**
+**🚧: List the frontend framework or app builder used (Budibase). Describe main views and APIs used for each view.**
+Budisbase was used as a frontend framework.
+
+**-[Main Screen]**
+no api
+**-Car choices screen**
+Get Car List
+**-Login**
+ Login API
+**My-Bookings (screen)**
+Get Booking
+Update Booking
+Delete booking
+**-Admin**
+Get Car List
+Get Car
+Add Car
+Update Car
+Delete Car
+Get Customer List
+Get Customer
+Add Customer
+Update Customer
+Delete Customer
+Get Booking List
+Get Booking
+Add Booking
+Update Booking
+Delete Booking
+
 
 ---
 
@@ -127,11 +164,6 @@ API documentation available at `/swagger-ui.html`.
 4. Deploy or connect the frontend app.
 5. Update API endpoints in frontend datasource configuration.
 
-**Deployment to PaaS (Optional):**
-
-- Use Dockerfile provided in the root (adapt jar name as needed).
-- Deploy to Render or a similar PaaS.
-- Link backend API to your frontend app.
 
 ---
 
@@ -139,9 +171,10 @@ API documentation available at `/swagger-ui.html`.
 
 ### Roles
 
-- Backend Developer: [Your Name]
-- Frontend Developer: [Your Name]
-- (Add more roles as needed)
+- Backend Developer: [ Loic Bösch]
+- Frontend Developer: [ Jan Heinmann]
+- Read.me: [ Varnabakavan Nagarajah]
+- 
 
 ### Milestones
 
@@ -157,7 +190,10 @@ API documentation available at `/swagger-ui.html`.
 
 ## Maintainers
 
-- [Your Name(s)]
+- [ Loic Bösch]
+- [ Jan Heinmann]
+- [ Varnabakavan Nagarajah]
+- [ Nils Bumbacher]
 
 ---
 

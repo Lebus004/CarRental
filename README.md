@@ -166,7 +166,7 @@ https://fhnwjanheimann.budibase.app/app_dev_fhnwjanheimann_968c1a77dbcd47d9b0ab2
 
 - Backend Developer: Loic Bösch
 - Frontend Developer: Loic Bösch, (Varnabakavan Nagarajah)
-- Budibase Wireframes:Jan Heinmann
+- Budibase Wireframes: Jan Heinmann
 - Read.me: Varnabakavan Nagarajah
 
 ### Milestones

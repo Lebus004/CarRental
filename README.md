@@ -117,6 +117,7 @@ API documentation available at `/swagger-ui.html`.
 ### Frontend Technology
 
 Budibase was used as the frontend framework.
+https://fhnwjanheimann.budibase.app/app_dev_fhnwjanheimann_968c1a77dbcd47d9b0ab22aa0dab00d9#/login
 
 **Main Views and APIs:**
 

@@ -1,6 +1,5 @@
 package ch.fhnw.pizza.controller;
 
-import java.time.Duration;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import ch.fhnw.pizza.business.service.BookingService;
+import ch.fhnw.pizza.business.service.CarService;
+import ch.fhnw.pizza.business.service.CustomerService;
 import ch.fhnw.pizza.data.domain.Booking;
+import ch.fhnw.pizza.data.domain.Car;
+import ch.fhnw.pizza.data.domain.Customer;
 
 
 @RestController
@@ -26,6 +29,12 @@ public class BookingController {
 
     @Autowired
     private BookingService bookingService;
+
+    @Autowired
+    private CarService carService;
+
+    @Autowired
+    private CustomerService customerService;
 
     @GetMapping(path="/bookings/{id}", produces = "application/json")
     public ResponseEntity<Booking> getBooking(@PathVariable Long id) {
@@ -48,7 +57,18 @@ public class BookingController {
 
     // Booking costs are displayed weirdly rather than actual costs
     @PostMapping(path="/bookings", consumes="application/json", produces = "application/json")
-    public ResponseEntity<Booking> addBooking(@RequestBody Booking booking) {
+    public ResponseEntity<Booking> addBooking(@RequestBody BookingDto bookingDto) {
+        // Hole Car und Customer anhand der IDs
+        Car car = carService.findCarById(bookingDto.carId);
+        Customer customer = customerService.findCustomerById(bookingDto.customerId);
+
+        Booking booking = new Booking();
+        booking.setStartDate(bookingDto.startDate);
+        booking.setDuration(bookingDto.duration != null ? bookingDto.duration.intValue() : null);
+        booking.setCar(car);
+        booking.setCustomer(customer);
+        booking.setEndDate(bookingDto.startDate.plusHours(bookingDto.duration));
+
         // Prüfe, ob das Startdatum in der Vergangenheit liegt
         if (booking.getStartDate() == null || booking.getDuration() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "startDate and duration are required");
@@ -56,7 +76,6 @@ public class BookingController {
         if (booking.getStartDate().isBefore(java.time.LocalDateTime.now())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No bookings in the past allowed");
         }
-        booking.setEndDate(booking.getStartDate().plusHours(booking.getDuration()));
 
         boolean available = bookingService.isCarAvailable(
             booking.getCar().getCarId(),

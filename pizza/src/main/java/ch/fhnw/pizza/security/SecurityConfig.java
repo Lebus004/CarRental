@@ -38,10 +38,10 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests( auth -> auth
-                        .requestMatchers("/api/bookings").hasAnyRole("USER","ADMIN") //note that the role need not be prefixed with "ROLE_"
-                        .requestMatchers("/api/customers").hasRole("ADMIN") //note that the role need not be prefixed with "ROLE_"
-                        .requestMatchers("/api/cars").hasRole("ADMIN") //note that the role need not be prefixed with "ROLE_"
-                        .requestMatchers("/api/admins").hasRole("ADMIN") //note that the role need not be prefixed with "ROLE_"
+                    //    .requestMatchers("/api/bookings").hasAnyRole("USER","ADMIN") //note that the role need not be prefixed with "ROLE_"
+                    //    .requestMatchers("/api/customers").hasRole("ADMIN") //note that the role need not be prefixed with "ROLE_"
+                    //    .requestMatchers("/api/cars").hasAnyRole("USER","ADMIN") //note that the role need not be prefixed with "ROLE_"
+                    //    .requestMatchers("/api/admins").hasRole("ADMIN") //note that the role need not be prefixed with "ROLE_"
                         
                         .requestMatchers("/api/**",
                                                     "/users",

@@ -164,7 +164,8 @@ Budibase was used as the frontend framework.
 ### Roles
 
 - Backend Developer: Loic Bösch
-- Frontend Developer: Jan Heinmann
+- Frontend Developer: Loic Bösch
+- Budibase Wireframes:Jan Heinmann
 - Read.me: Varnabakavan Nagarajah
 
 ### Milestones

@@ -2,7 +2,6 @@
 
 CarRental_FHNW is a project for car rental management.
 
-
 ---
 
 ## Contents
@@ -26,22 +25,19 @@ CarRental_FHNW is a project for car rental management.
 
 ## Analysis
 
-**🚧: Reuse and adapt your own analysis and requirements here.**
-
 ### Scenario
 
-CarRental_FHNW is a lightweight demonstration system enabling customer and admin to manage a catalog of rental cars, bookings. It provides both administrative and user-facing functionality.
+CarRental_FHNW is a lightweight demonstration system enabling customer and admin to manage a catalog of rental cars and bookings. It provides both administrative and user-facing functionality.
 
 ### User Stories
 
 - As an Admin, I want a consistent visual appearance for easy navigation.
-- As an Admin, I want to create, edit, delete, car, bookings and access.
-- As an Admin, I want to login as a admin for authentication and authorization.
-- As an User, I want to create and update or delete my bookings.
-- As a User, I want to view available cars and filter by model, type, fuel type.
+- As an Admin, I want to create, edit, and delete cars, bookings, and user access.
+- As an Admin, I want to login as an admin for authentication and authorization.
+- As a User, I want to create, update, or delete my bookings.
+- As a User, I want to view available cars and filter by model, type, and fuel type.
 - As a User, I want to authenticate to access personal data.
 - As a User, I want to see the cost of my booking.
-
 
 ### Use Cases
 
@@ -60,29 +56,26 @@ CarRental_FHNW is a lightweight demonstration system enabling customer and admin
 - **UC-7 [View Booking Cost]:**  
   The user can view the calculated cost of a booking based on the rental duration.
 
-
+---
 
 ## Design
 
-**🚧: Decide on your CI, color scheme, graphics, layout, and UX. Add wireframes and diagrams as needed.**
-
 ### Wireframe
 
-**🚧: List the main pages: Main Screen, Car choices screen, Login, Admin.**
+- Main Screen
+- Car Choices Screen
+- Login
+- Admin
 
 ### Prototype
 
-**🚧: create a prototype using placeholder data.**
+- Create a prototype using placeholder data.
 
 ### Domain Design
-
-**🚧: Provide an entity-relationship diagram.**
 
 Main domain entities may include: Car, Booking, User, VehicleType.
 
 ### Business Logic
-
-**Example:**
 
 For booking a car (UC-4):
 
@@ -117,46 +110,46 @@ API documentation available at `/swagger-ui.html`.
 </dependency>
 ```
 
-**🚧: Describe if you used Spring Initializr or adapted dependencies. Document database setup (in-memory/persistent) and placeholder data initialization.**
+- Spring Initializr was used to bootstrap the backend project.
+- Database can be configured as in-memory (H2) or persistent using `application.properties`.
+- Placeholder/test data can be initialized at application startup.
 
 ### Frontend Technology
 
-**🚧: List the frontend framework or app builder used (Budibase). Describe main views and APIs used for each view.**
-Budisbase was used as a frontend framework.
+Budibase was used as the frontend framework.
 
-**-[Main Screen]**
-no api
-**-Car choices screen**
-Get Car List
-**-Login**
- Login API
-**My-Bookings (screen)**
-Get Booking
-Update Booking
-Delete booking
-**-Admin**
-Get Car List
-Get Car
-Add Car
-Update Car
-Delete Car
-Get Customer List
-Get Customer
-Add Customer
-Update Customer
-Delete Customer
-Get Booking List
-Get Booking
-Add Booking
-Update Booking
-Delete Booking
+**Main Views and APIs:**
 
+- **Main Screen:**  
+  - No API
+- **Car Choices Screen:**  
+  - Get Car List
+- **Login:**  
+  - Login API
+- **My-Bookings (screen):**  
+  - Get Booking  
+  - Update Booking  
+  - Delete Booking
+- **Admin:**  
+  - Get Car List  
+  - Get Car  
+  - Add Car  
+  - Update Car  
+  - Delete Car  
+  - Get Customer List  
+  - Get Customer  
+  - Add Customer  
+  - Update Customer  
+  - Delete Customer  
+  - Get Booking List  
+  - Get Booking  
+  - Add Booking  
+  - Update Booking  
+  - Delete Booking
 
 ---
 
 ## Execution
-
-**🚧: List steps to run the application and update configurations. For Codespaces or local environments:**
 
 1. Clone the repository.
 2. Start the backend (`CarRentalApplication.java`).
@@ -164,17 +157,15 @@ Delete Booking
 4. Deploy or connect the frontend app.
 5. Update API endpoints in frontend datasource configuration.
 
-
 ---
 
 ## Project Management
 
 ### Roles
 
-- Backend Developer: [ Loic Bösch]
-- Frontend Developer: [ Jan Heinmann]
-- Read.me: [ Varnabakavan Nagarajah]
-- 
+- Backend Developer: Loic Bösch
+- Frontend Developer: Jan Heinmann
+- Read.me: Varnabakavan Nagarajah
 
 ### Milestones
 
@@ -189,10 +180,10 @@ Delete Booking
 
 ## Maintainers
 
-- [ Loic Bösch]
-- [ Jan Heinmann]
-- [ Varnabakavan Nagarajah]
-- [ Nils Bumbacher]
+- Loic Bösch
+- Jan Heinmann
+- Varnabakavan Nagarajah
+- Nils Bumbacher
 
 ---
 

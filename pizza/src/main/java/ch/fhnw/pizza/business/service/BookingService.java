@@ -16,8 +16,8 @@ public class BookingService {
     @Autowired
     private BookingRepository bookingRepository;
 
-    public Booking findBookingById(Long bookingId) {
-        return bookingRepository.findById(bookingId).orElse(null); // Variablenname angepasst
+    public Booking findBookingById(Long id) {
+        return bookingRepository.findById(id).orElse(null);
     }
 
     public List<Booking> getAllBookings() {
@@ -67,6 +67,10 @@ public class BookingService {
             }
         }
         return true;
+    }
+
+    public boolean isStartDateInPast(Booking booking) {
+        return booking.getStartDate().isBefore(java.time.LocalDateTime.now());
     }
 
     public static final Map<Integer, Integer> HOURLY_PRICES = Map.ofEntries(

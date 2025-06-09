@@ -104,6 +104,25 @@ public class BookingController {
         return ResponseEntity.ok("Booking with id " + id + " deleted");
     }
 
+    
+    @DeleteMapping(path="/bookings/user/{id}", produces = "application/json")
+    public ResponseEntity<String> deleteUserBooking(@PathVariable Long id) {
+        try {
+            Booking booking = bookingService.findBookingById(id);
+            if (booking == null) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking not found");
+            }
+            // Nur erlauben, wenn Startdatum nicht in der Vergangenheit liegt
+            if (bookingService.isStartDateInPast(booking)) {
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Delete not allowed: Booking startDate is in the past");
+            }
+            bookingService.deleteBooking(id);
+            return ResponseEntity.ok("Booking with id " + id + " deleted");
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+    }
+}
+
     // Creates new booking rather than updating the last one
     @PutMapping(path="/bookings/{id}", consumes="application/json", produces = "application/json")
     public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestBody BookingDto bookingDto) {
@@ -136,4 +155,40 @@ public class BookingController {
         throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
     }
 }
+    
+    @PutMapping(path="/bookings/user/{id}", consumes="application/json", produces = "application/json")
+    public ResponseEntity<Booking> updateUserBooking(@PathVariable Long id, @RequestBody BookingDto bookingDto) {
+        try {
+            Booking existingBooking = bookingService.findBookingById(id);
+            if (existingBooking == null) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking not found");
+            }
+            // Nur erlauben, wenn Startdatum nicht in der Vergangenheit liegt
+            if (bookingService.isStartDateInPast(existingBooking)) {
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Update not allowed: Booking startDate is in the past");
+            }
+
+            Car car = carService.findCarById(bookingDto.carId);
+            Customer customer = customerService.findCustomerById(bookingDto.customerId);
+
+            existingBooking.setStartDate(bookingDto.startDate);
+            existingBooking.setDuration(bookingDto.duration != null ? bookingDto.duration.intValue() : null);
+            existingBooking.setEndDate(bookingDto.startDate.plusHours(bookingDto.duration));
+            existingBooking.setCar(car);
+            existingBooking.setCustomer(customer);
+
+            // Kosten neu berechnen
+            long hours = existingBooking.getDuration();
+            int price = BookingService.HOURLY_PRICES.getOrDefault((int) hours, -1);
+            if (price == -1) {
+                throw new ResponseStatusException(HttpStatus.CONFLICT, "No price defined for this duration");
+            }
+            existingBooking.setBookingCost((double) price);
+
+            Booking updatedBooking = bookingService.updateBooking(existingBooking);
+            return ResponseEntity.ok(updatedBooking);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        }
+    }
 }

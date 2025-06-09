@@ -106,18 +106,21 @@ public class BookingController {
 
     // Creates new booking rather than updating the last one
     @PutMapping(path="/bookings/{id}", consumes="application/json", produces = "application/json")
-    public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestBody Booking booking) {
+    public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestBody BookingDto bookingDto) {
     try {
         Booking existingBooking = bookingService.findBookingById(id);
         if (existingBooking == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking not found");
         }
 
-        existingBooking.setStartDate(booking.getStartDate());
-        existingBooking.setDuration(booking.getDuration());
-        existingBooking.setEndDate(booking.getStartDate().plusHours(booking.getDuration()));
-        existingBooking.setCar(booking.getCar());
-        existingBooking.setCustomer(booking.getCustomer());
+        Car car = carService.findCarById(bookingDto.carId);
+        Customer customer = customerService.findCustomerById(bookingDto.customerId);
+
+        existingBooking.setStartDate(bookingDto.startDate);
+        existingBooking.setDuration(bookingDto.duration != null ? bookingDto.duration.intValue() : null);
+        existingBooking.setEndDate(bookingDto.startDate.plusHours(bookingDto.duration));
+        existingBooking.setCar(car);
+        existingBooking.setCustomer(customer);
 
         // Kosten neu berechnen
         long hours = existingBooking.getDuration();

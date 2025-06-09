@@ -191,4 +191,13 @@ public class BookingController {
             throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
         }
     }
+
+    @GetMapping(path="/bookings/user/{customerId}", produces = "application/json")
+    public List<Booking> getBookingsByCustomer(@PathVariable Long customerId) {
+        List<Booking> bookings = bookingService.findBookingsByCustomerId(customerId);
+        if (bookings.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No bookings found for this customer");
+        }
+        return bookings;
+    }
 }

@@ -73,6 +73,10 @@ public class BookingService {
         return booking.getStartDate().isBefore(java.time.LocalDateTime.now());
     }
 
+    public List<Booking> findBookingsByCustomerId(Long customerId) {
+        return bookingRepository.findByCustomer_CustomerId(customerId);
+    }
+
     public static final Map<Integer, Integer> HOURLY_PRICES = Map.ofEntries(
         Map.entry(1, 100),
         Map.entry(2, 195),

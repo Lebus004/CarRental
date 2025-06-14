@@ -11,5 +11,4 @@ import ch.fhnw.pizza.data.domain.Booking;
 public interface BookingRepository extends JpaRepository<Booking, Long> {
     Booking findByBookingId(Integer bookingId); // Methodennamen geändert
     List<Booking> findByCar_CarId(Long carId);
-    List<Booking> findByCustomer_CustomerId(Long customerId);
 }

@@ -8,8 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -23,7 +21,7 @@ public class SecurityConfig {
         //Create two users with different roles and add them to the in-memory user store
 
         return new InMemoryUserDetailsManager(
-            User.withUsername("myuser")
+            User.withUsername("mycustomer")
                 //.password("{noop}password") //create user with an encrypted password instead of the plain text password
                 .password("{bcrypt}$2a$10$9fxQtdWuRaYn5UchAm5iAexbPi7tmRadnDogJwXPR9fVDJyt9g/su")
                 .authorities("READ","ROLE_USER")
@@ -61,8 +59,4 @@ public class SecurityConfig {
                 .build(); 
     } 
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 }

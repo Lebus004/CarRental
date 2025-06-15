@@ -1,16 +1,20 @@
 package ch.fhnw.pizza;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.fhnw.pizza.business.service.AdminService;
-import ch.fhnw.pizza.business.service.CustomerService;
 import ch.fhnw.pizza.business.service.CarService;
+import ch.fhnw.pizza.business.service.CustomerService;
+import ch.fhnw.pizza.data.domain.Admin;
+import ch.fhnw.pizza.data.domain.Booking;
 import ch.fhnw.pizza.data.domain.Car;
 import ch.fhnw.pizza.data.domain.Customer;
-import ch.fhnw.pizza.data.domain.Admin;
+import ch.fhnw.pizza.data.repository.BookingRepository;
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.annotation.PostConstruct;
 
@@ -24,9 +28,11 @@ public class CarApplication {
 
 	@Autowired
 	private CustomerService customerService;
-
 	@Autowired
 	private AdminService adminService;
+
+	@Autowired
+	private BookingRepository bookingRepository;
 
 
 	public static void main(String[] args) {
@@ -39,6 +45,7 @@ public class CarApplication {
 	// To resolve the error, delete the file and restart the application
 	@PostConstruct
 	private void initPlaceholderData() throws Exception {
+		
 		Car car = new Car();
 		car.setCarType("PW");
 		car.setCarModel("VW Golf");
@@ -64,6 +71,17 @@ public class CarApplication {
 		admin.setUsername("myadmin");
 		admin.setPassword("$2a$10$9fxQtdWuRaYn5UchAm5iAexbPi7tmRadnDogJwXPR9fVDJyt9g/su");
 		adminService.addAdmin(admin);
+
+		Booking booking = new Booking();
+    	booking.setStartDate(LocalDateTime.of(2025, 6, 20, 10, 0));
+    	booking.setEndDate(LocalDateTime.of(2025, 6, 20, 20, 0));
+    	booking.setDuration(10);
+    	booking.setBookingCost(500.0);
+    	booking.setCar(car);
+    	booking.setCustomer(customer);
+
+    	bookingRepository.save(booking);
+		
 	}
 
 }

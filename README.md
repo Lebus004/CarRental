@@ -69,7 +69,7 @@ CarRental_FHNW is a lightweight demonstration system enabling customer and admin
 
 ### First Wireframe draft
 
-[Screenshot first draft](https://github.com/Lebus004/CarRental/blob/main/images/2025-06-15%2013_28_14-Internet%20Technologies%20Mockup%20-%20OneNote.png)
+![Screenshot first draft](https://github.com/Lebus004/CarRental/blob/main/images/2025-06-15%2013_28_14-Internet%20Technologies%20Mockup%20-%20OneNote.png)
 
 
 ### Prototype

@@ -60,7 +60,7 @@ CarRental_FHNW is a lightweight demonstration system enabling customer and admin
 
 The following diagram illustrates the main use cases for the CarRental_FHNW system, highlighting the interactions between Users, Admins, and the system's core functionalities:
 
-![Use Case Diagram](![Bild](https://github.com/user-attachments/assets/a919cd51-3775-476e-9e1b-b39df2ae8f8b)
+![Use Case Diagram](https://github.com/user-attachments/assets/a919cd51-3775-476e-9e1b-b39df2ae8f8b)
 )
 
 **Legend:**

@@ -34,15 +34,15 @@ CarRental_FHNW is a lightweight demonstration system enabling customer and admin
 - As an Admin, I want a consistent visual appearance for easy navigation.
 - As an Admin, I want to create, edit, and delete cars, bookings, and user access.
 - As an Admin, I want to login as an admin for authentication and authorization.
-- As a User, I want to create, update, or delete my bookings.
-- As a User, I want to view available cars and filter by model, type, and fuel type.
+- As a User, I want to create or delete my bookings.
+- As a User, I want to view available cars and filter by model, type, seat, and fuel type.
 - As a User, I want to authenticate to access personal data.
 - As a User, I want to see the cost of my booking.
 
 ### Use Cases
 
 - **UC-1 [Show filtered car list]:**  
-  The user can retrieve a list of all available cars in the system, with options to filter by model, type, or fuel type.
+  The user can retrieve a list of all available cars in the system, with options to filter by model, type, seats, or fuel type.
 - **UC-2 [Show Car Details]:**  
   The user can view detailed information about a specific car, including its model, type, fuel type, seats, and availability.
 - **UC-3 [Manage Cars]:**  
@@ -50,9 +50,9 @@ CarRental_FHNW is a lightweight demonstration system enabling customer and admin
 - **UC-4 [User Authentication]:**  
   The User or Admin can log in to access personalized or administrative features based on their role.
 - **UC-5 [Manage Bookings (User)]:**  
-  The user can create, update, or delete their own car bookings.
+  The user can create or delete their own car bookings.
 - **UC-6 [Manage Bookings (Admin)]:**  
-  The Admin can view, create, update, or delete any bookings for the user in the system.
+  The Admin can view, create, or delete any bookings for the user in the system.
 - **UC-7 [View Booking Cost]:**  
   The user can view the calculated cost of a booking based on the rental duration.
 
@@ -191,6 +191,7 @@ https://fhnwjanheimann.budibase.app/app_dev_fhnwjanheimann_968c1a77dbcd47d9b0ab2
 - Frontend Developer: Loic Bösch, (Varnabakavan Nagarajah)
 - Budibase Wireframes: Jan Heimann
 - Read.me: Varnabakavan Nagarajah
+- UML Diagram: Nils Bumbacher
 
 ### Milestones
 

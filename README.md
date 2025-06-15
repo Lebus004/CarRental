@@ -11,7 +11,8 @@ CarRental_FHNW is a project for car rental management.
   - User Stories
   - Use Case
 - Design
-  - Prototype Design
+  - Wireframe
+  - Prototype
   - Domain Design
   - Business Logic
 - Implementation
@@ -27,13 +28,13 @@ CarRental_FHNW is a project for car rental management.
 
 ### Scenario
 
-CarRental_FHNW is a lightweight demonstration system enabling customer and admin to manage a catalog of rental cars and bookings. It provides both administrative and user-facing functionality.
+CarRental_FHNW is a lightweight demonstration system enabling customers and admins to manage a catalog of rental cars and bookings. It provides both administrative and user-facing functionality.
 
 ### User Stories
 
 - As an Admin, I want a consistent visual appearance for easy navigation.
 - As an Admin, I want to create, edit, and delete cars, bookings, and user access.
-- As an Admin, I want to login as an admin for authentication and authorization.
+- As an Admin, I want to log in as an admin for authentication and authorization.
 - As a User, I want to create or delete my bookings.
 - As a User, I want to view available cars and filter by model, type, seat, and fuel type.
 - As a User, I want to authenticate to access personal data.
@@ -61,7 +62,6 @@ CarRental_FHNW is a lightweight demonstration system enabling customer and admin
 The following diagram illustrates the main use cases for the CarRental_FHNW system, highlighting the interactions between Users, Admins, and the system's core functionalities:
 
 ![Use Case Diagram](https://github.com/user-attachments/assets/a919cd51-3775-476e-9e1b-b39df2ae8f8b)
-)
 
 **Legend:**
 - Solid lines represent direct associations between actors and use cases.
@@ -69,6 +69,7 @@ The following diagram illustrates the main use cases for the CarRental_FHNW syst
 - The blue background represents the Car Rental System boundary.
 
 This diagram depicts how Users and Admins interact with features such as viewing and filtering car lists, managing cars, bookings, users, and accessing functionalities like authentication and booking cost calculation.
+
 ---
 
 ## Design
@@ -80,10 +81,9 @@ This diagram depicts how Users and Admins interact with features such as viewing
 - Login
 - Admin
 
-### First Wireframe draft
+#### First Wireframe Draft
 
 ![Screenshot first draft](https://github.com/Lebus004/CarRental/blob/main/images/2025-06-15%2013_28_14-Internet%20Technologies%20Mockup%20-%20OneNote.png)
-
 
 ### Prototype
 
@@ -93,9 +93,7 @@ This diagram depicts how Users and Admins interact with features such as viewing
 
 Main domain entities may include: Car, Booking, User, VehicleType.
 
-
 ![ERD2](https://github.com/Lebus004/CarRental/blob/main/images/Bild%20(3).png)
-
 
 ### Business Logic
 
@@ -138,8 +136,8 @@ API documentation available at `/swagger-ui.html`.
 
 ### Frontend Technology
 
-Budibase was used as the frontend framework.
-https://fhnwjanheimann.budibase.app/app_dev_fhnwjanheimann_968c1a77dbcd47d9b0ab22aa0dab00d9#/login
+Budibase was used as the frontend framework.  
+[CarRental Budibase App (Login)](https://fhnwjanheimann.budibase.app/app_dev_fhnwjanheimann_968c1a77dbcd47d9b0ab22aa0dab00d9#/login)
 
 **Main Views and APIs:**
 
@@ -186,9 +184,9 @@ https://fhnwjanheimann.budibase.app/app_dev_fhnwjanheimann_968c1a77dbcd47d9b0ab2
 ### Roles
 
 - Backend Developer: Loic Bösch
-- Frontend Developer: Loic Bösch, (Varnabakavan Nagarajah)
+- Frontend Developer: Loic Bösch, Varnabakavan Nagarajah
 - Budibase Wireframes: Jan Heimann
-- Read.me: Varnabakavan Nagarajah
+- Readme: Varnabakavan Nagarajah
 - UML Diagram: Nils Bumbacher
 
 ### Milestones

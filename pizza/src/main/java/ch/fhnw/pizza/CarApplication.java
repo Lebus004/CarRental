@@ -15,6 +15,8 @@ import ch.fhnw.pizza.data.domain.Booking;
 import ch.fhnw.pizza.data.domain.Car;
 import ch.fhnw.pizza.data.domain.Customer;
 import ch.fhnw.pizza.data.repository.BookingRepository;
+import ch.fhnw.pizza.data.repository.CarRepository;
+import ch.fhnw.pizza.data.repository.CustomerRepository;
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.annotation.PostConstruct;
 
@@ -33,6 +35,12 @@ public class CarApplication {
 
 	@Autowired
 	private BookingRepository bookingRepository;
+	
+	@Autowired
+	private CarRepository carRepository;
+	
+	@Autowired
+	private CustomerRepository customerRepository;
 
 
 	public static void main(String[] args) {
@@ -62,25 +70,84 @@ public class CarApplication {
 		car.setCarAvailability(true);
 		carService.addCar(car);
 
+		car = new Car();
+		car.setCarType("PW");
+		car.setCarModel("Toyota Corolla");
+		car.setTypeOfFuel("Gasoline");
+		car.setSeats(5);
+		car.setCarAvailability(false);
+		carService.addCar(car);
+ 
+		car = new Car();
+		car.setCarType("SUV");
+		car.setCarModel("Ford Explorer");
+		car.setTypeOfFuel("Gasoline");
+		car.setSeats(7);
+		car.setCarAvailability(true);
+		carService.addCar(car);
+ 
+		car = new Car();
+		car.setCarType("PW");
+		car.setCarModel("Tesla Model 3");
+		car.setTypeOfFuel("Electric");
+		car.setSeats(5);
+		car.setCarAvailability(true);
+		carService.addCar(car);
+ 
+		car = new Car();
+		car.setCarType("PW");
+		car.setCarModel("Volkswagen Golf");
+		car.setTypeOfFuel("Diesel");
+		car.setSeats(5);
+		car.setCarAvailability(false);
+		carService.addCar(car);
+ 
+		car = new Car();
+		car.setCarType("SUV");
+		car.setCarModel("Hyundai Kona");
+		car.setTypeOfFuel("Electric");
+		car.setSeats(5);
+		car.setCarAvailability(true);
+		carService.addCar(car);
+ 
+		car = new Car();
+		car.setCarType("SUV");
+		car.setCarModel("Toyota RAV4");
+		car.setTypeOfFuel("Gasoline");
+		car.setSeats(5);
+		car.setCarAvailability(false);
+		carService.addCar(car);
+ 
+		car = new Car();
+		car.setCarType("PW");
+		car.setCarModel("BMW 3 Series");
+		car.setTypeOfFuel("Diesel");
+		car.setSeats(5);
+		car.setCarAvailability(true);
+		carService.addCar(car);
+ 
+		car = new Car();
+		car.setCarType("SUV");
+		car.setCarModel("Mercedes-Benz GLE");
+		car.setTypeOfFuel("Diesel");
+		car.setSeats(5);
+		car.setCarAvailability(true);
+		carService.addCar(car);
+
 		Customer customer = new Customer();
 		customer.setUsername("mycustomer");
 		customer.setPassword("$2a$10$9fxQtdWuRaYn5UchAm5iAexbPi7tmRadnDogJwXPR9fVDJyt9g/su");
+		customerService.addCustomer(customer);
+
+		customer = new Customer();
+		customer.setUsername("othercustomer");
+		customer.setPassword("$2a$08$9fxQtdWuRaYn5UchAm5iAexbPi7tmRadnKatJwXPR9fVDJyt9g/su");
 		customerService.addCustomer(customer);
 
 		Admin admin = new Admin();
 		admin.setUsername("myadmin");
 		admin.setPassword("$2a$10$9fxQtdWuRaYn5UchAm5iAexbPi7tmRadnDogJwXPR9fVDJyt9g/su");
 		adminService.addAdmin(admin);
-
-		Booking booking = new Booking();
-    	booking.setStartDate(LocalDateTime.of(2025, 6, 20, 10, 0));
-    	booking.setEndDate(LocalDateTime.of(2025, 6, 20, 20, 0));
-    	booking.setDuration(10);
-    	booking.setBookingCost(500.0);
-    	booking.setCar(car);
-    	booking.setCustomer(customer);
-
-    	bookingRepository.save(booking);
 		
 	}
 

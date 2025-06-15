@@ -56,6 +56,18 @@ CarRental_FHNW is a lightweight demonstration system enabling customer and admin
 - **UC-7 [View Booking Cost]:**  
   The user can view the calculated cost of a booking based on the rental duration.
 
+### Use Case Diagram
+
+The following diagram illustrates the main use cases for the CarRental_FHNW system, highlighting the interactions between Users, Admins, and the system's core functionalities:
+
+![Use Case Diagram](image1)
+
+**Legend:**
+- Solid lines represent direct associations between actors and use cases.
+- Dashed arrows with <<Include>> indicate use case inclusion relationships.
+- The blue background represents the Car Rental System boundary.
+
+This diagram depicts how Users and Admins interact with features such as viewing and filtering car lists, managing cars, bookings, users, and accessing functionalities like authentication and booking cost calculation.
 ---
 
 ## Design

@@ -137,7 +137,8 @@ API documentation available at `/swagger-ui.html`.
 ### Frontend Technology
 
 Budibase was used as the frontend framework.  
-[CarRental Budibase App (Login)](https://fhnwjanheimann.budibase.app/app_dev_fhnwjanheimann_968c1a77dbcd47d9b0ab22aa0dab00d9#/login)
+[CarRental Budibase App (Login)](
+https://fhnwjanheimann.budibase.app/app/bit-group-car-rental)
 
 **Main Views and APIs:**
 

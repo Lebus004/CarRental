@@ -93,6 +93,11 @@ This diagram depicts how Users and Admins interact with features such as viewing
 
 Main domain entities may include: Car, Booking, User, VehicleType.
 
+![ERD1](https://github.com/Lebus004/CarRental/blob/main/images/Bild%20(1).png)
+
+![ERD2](https://github.com/Lebus004/CarRental/blob/main/images/Bild%20(3).png)
+
+
 ### Business Logic
 
 For booking a car (UC-4):

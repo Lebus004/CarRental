@@ -150,9 +150,8 @@ https://fhnwjanheimann.budibase.app/app_dev_fhnwjanheimann_968c1a77dbcd47d9b0ab2
 - **Login:**  
   - Login API
 - **My-Bookings (screen):**  
-  - Get Booking  
-  - Update Booking  
-  - Delete Booking
+  - Get User Booking    
+  - Delete User Booking
 - **Admin:**  
   - Get Car List  
   - Get Car  
@@ -168,7 +167,7 @@ https://fhnwjanheimann.budibase.app/app_dev_fhnwjanheimann_968c1a77dbcd47d9b0ab2
   - Get Booking  
   - Add Booking  
   - Update Booking  
-  - Delete Booking
+  - Delete User Booking
 
 ---
 

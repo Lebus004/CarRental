@@ -27,7 +27,7 @@ CarRental_FHNW is a project for car rental management.
 
 ### Scenario
 
-CarRental_FHNW is a lightweight demonstration system enabling customer and admin to manage a catalog of rental cars and bookings. It provides both administrative and user-facing functionality.
+CarRental_FHNW is a lightweight demonstration system enabling customers and admins to manage a catalog of rental cars and bookings. It provides both administrative and user-facing functionality.
 
 ### User Stories
 
@@ -60,15 +60,16 @@ CarRental_FHNW is a lightweight demonstration system enabling customer and admin
 
 The following diagram illustrates the main use cases for the CarRental_FHNW system, highlighting the interactions between Users, Admins, and the system's core functionalities:
 
-![Use Case Diagram](![Bild](https://github.com/user-attachments/assets/a919cd51-3775-476e-9e1b-b39df2ae8f8b)
-)
+![Use Case Diagram](image1)
 
 **Legend:**
+
 - Solid lines represent direct associations between actors and use cases.
 - Dashed arrows with <<Include>> indicate use case inclusion relationships.
 - The blue background represents the Car Rental System boundary.
 
 This diagram depicts how Users and Admins interact with features such as viewing and filtering car lists, managing cars, bookings, users, and accessing functionalities like authentication and booking cost calculation.
+
 ---
 
 ## Design
@@ -80,10 +81,9 @@ This diagram depicts how Users and Admins interact with features such as viewing
 - Login
 - Admin
 
-### First Wireframe draft
+### First Wireframe Draft
 
 ![Screenshot first draft](https://github.com/Lebus004/CarRental/blob/main/images/2025-06-15%2013_28_14-Internet%20Technologies%20Mockup%20-%20OneNote.png)
-
 
 ### Prototype
 
@@ -134,8 +134,8 @@ API documentation available at `/swagger-ui.html`.
 
 ### Frontend Technology
 
-Budibase was used as the frontend framework.
-https://fhnwjanheimann.budibase.app/app_dev_fhnwjanheimann_968c1a77dbcd47d9b0ab22aa0dab00d9#/login
+Budibase was used as the frontend framework.  
+[CarRental Budibase App (Login)](https://fhnwjanheimann.budibase.app/app_dev_fhnwjanheimann_968c1a77dbcd47d9b0ab22aa0dab00d9#/login)
 
 **Main Views and APIs:**
 
@@ -183,9 +183,9 @@ https://fhnwjanheimann.budibase.app/app_dev_fhnwjanheimann_968c1a77dbcd47d9b0ab2
 ### Roles
 
 - Backend Developer: Loic Bösch
-- Frontend Developer: Loic Bösch, (Varnabakavan Nagarajah)
+- Frontend Developer: Loic Bösch, Varnabakavan Nagarajah
 - Budibase Wireframes: Jan Heimann
-- Read.me: Varnabakavan Nagarajah
+- Readme: Varnabakavan Nagarajah
 
 ### Milestones
 
